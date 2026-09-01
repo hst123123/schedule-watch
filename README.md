@@ -39,7 +39,11 @@ changes, you'll get a push notification on your phone.
 ## Notes
 - The script hashes the visible text content of the page's main section, so
   it ignores insignificant changes to header/footer chrome, ads, etc.
-- If you ever want to check a different URL, edit `MONITOR_URL` in the
-  workflow file or the script directly.
-- GitHub's free tier includes plenty of Actions minutes for a once-an-hour
-  check like this.
+- **Monitoring multiple pages:** edit the `URLS` list near the top of
+  `check_schedule.py` — add or remove URLs, one per line. Each URL is
+  tracked independently in `state.json`, and you'll get a separate
+  notification for whichever page actually changed.
+- Adding a new URL to the list means that URL gets a fresh baseline on the
+  next run (no notification that first time), same as changing a URL.
+- GitHub's free tier includes plenty of Actions minutes for a check every
+  15 minutes like this.

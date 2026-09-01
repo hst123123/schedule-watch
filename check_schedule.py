@@ -17,11 +17,11 @@ from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 
-# ---- Configuration (edit these or set as environment variables) ----------
-URL = os.environ.get(
-    "MONITOR_URL",
+# ---- Configuration (edit this list to add/remove pages to watch) ---------
+URLS = [
     "https://transit.yahoo.co.jp/diainfo/pref/13",
-)
+    "https://amaterasu-yokohama.com/schedule?day=2026-09-07&from=2026-09-01",
+]
 NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "")  # set this to your unique topic name
 STATE_FILE = Path(os.environ.get("STATE_FILE", "state.json"))
 # ----------------------------------------------------------------------------
@@ -86,24 +86,32 @@ def send_notification(title: str, message: str) -> None:
 
 
 def main() -> None:
-    text = fetch_content(URL)
-    new_hash = content_hash(text)
-
     state = load_state()
-    old_hash = state.get("hash")
 
-    if old_hash is None:
-        print("First run — saving baseline, no notification sent.")
-    elif old_hash != new_hash:
-        print("Change detected — sending notification.")
-        send_notification(
-            title="Schedule page updated",
-            message=f"The schedule page changed:\n{URL}",
-        )
-    else:
-        print("No change.")
+    for url in URLS:
+        print(f"Checking: {url}")
+        try:
+            text = fetch_content(url)
+        except requests.RequestException as e:
+            print(f"  Failed to fetch — skipping this run: {e}", file=sys.stderr)
+            continue
 
-    state["hash"] = new_hash
+        new_hash = content_hash(text)
+        old_hash = state.get(url, {}).get("hash")
+
+        if old_hash is None:
+            print("  First run for this URL — saving baseline, no notification sent.")
+        elif old_hash != new_hash:
+            print("  Change detected — sending notification.")
+            send_notification(
+                title="Page updated",
+                message=f"This page changed:\n{url}",
+            )
+        else:
+            print("  No change.")
+
+        state[url] = {"hash": new_hash}
+
     save_state(state)
 
 
