@@ -19,7 +19,7 @@ from bs4 import BeautifulSoup
 
 # ---- Configuration (edit this list to add/remove pages to watch) ---------
 URLS = [
-    "https://transit.yahoo.co.jp/diainfo/pref/13",
+    "https://amaterasu-yokohama.com/therapist/43069",
     "https://amaterasu-yokohama.com/schedule?day=2026-09-07&from=2026-09-01",
 ]
 NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "")  # set this to your unique topic name
