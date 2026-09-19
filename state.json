@@ -7,7 +7,7 @@
     "hash": "799d8a4f29897e6ce743b8dfeb6d914f30885e7910dd6384495301b5bd0d27f3"
   },
   "https://amaterasu-yokohama.com/therapist/43069": {
-    "hash": "2b383d51a92b966e3483ec431193ef030f6d2b0b3b77602efda224e27dbe9b46"
+    "hash": "a27adaeab3d4bcb7c370ce1bfe4346d7ebcda4f3d96559f789475bf339efc9f4"
   },
   "https://amaterasu-yokohama.com/schedule?day=2026-09-20&from=2026-09-14": {
     "hash": "a65bd918b23dd4ca355f059dec0d93d644b14b674f0bf52ea0221ee784fa4469"
@@ -29,5 +29,8 @@
   },
   "https://amaterasu-yokohama.com/schedule?day=2026-09-27&from=2026-09-27": {
     "hash": "e126d198ae6a90fb92e23ba370701964e20625aec51cdf2cb2deb1b66c1ae042"
+  },
+  "https://amaterasu-yokohama.com/schedule?day=2026-09-28&from=2026-09-28": {
+    "hash": "2165f28f97d8617036eaa946d1b01878c213fdaf75b76691d985a89c9e9ef2ca"
   }
 }
