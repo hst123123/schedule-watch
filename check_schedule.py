@@ -20,7 +20,7 @@ from bs4 import BeautifulSoup
 # ---- Configuration (edit this list to add/remove pages to watch) ---------
 URLS = [
     "https://amaterasu-yokohama.com/therapist/43069",
-    "https://amaterasu-yokohama.com/schedule?day=2026-09-24&from=2026-09-24",
+    "https://amaterasu-yokohama.com/schedule?day=2026-09-25&from=2026-09-25",
 ]
 NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "")  # set this to your unique topic name
 STATE_FILE = Path(os.environ.get("STATE_FILE", "state.json"))
