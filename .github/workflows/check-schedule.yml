@@ -1,12 +1,11 @@
 name: Check schedule page
 
 on:
-  schedule:
-    # Runs at :07 and :37 past the hour — offset from the round :00/:30
-    # minutes, which get heavily congested across all of GitHub and are
-    # more likely to have scheduled triggers silently dropped under load.
-    - cron: "7,37 * * * *"
-  workflow_dispatch: {}  # lets you trigger it manually from the Actions tab
+  # Triggered externally by cron-job.org calling the GitHub API's
+  # workflow_dispatch endpoint on a schedule, since GitHub's native
+  # `schedule:` trigger was unreliable for this repo. Also lets you
+  # trigger it manually from the Actions tab's "Run workflow" button.
+  workflow_dispatch: {}
 
 jobs:
   check:
