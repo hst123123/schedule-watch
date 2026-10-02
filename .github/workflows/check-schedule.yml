@@ -2,9 +2,10 @@ name: Check schedule page
 
 on:
   schedule:
-    # Runs every 30 minutes (GitHub's schedule is UTC and best-effort;
-    # actual run time may drift by a few minutes)
-    - cron: "*/30 * * * *"
+    # Runs at :07 and :37 past the hour — offset from the round :00/:30
+    # minutes, which get heavily congested across all of GitHub and are
+    # more likely to have scheduled triggers silently dropped under load.
+    - cron: "7,37 * * * *"
   workflow_dispatch: {}  # lets you trigger it manually from the Actions tab
 
 jobs:
